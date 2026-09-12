@@ -1,0 +1,26 @@
+{
+  "name": "@prilog/monitoring",
+  "version": "0.1.0",
+  "description": "OpenTelemetry logs, traces and exception capture for Prilog",
+  "repository": { "type": "git", "url": "git+https://github.com/Prilog-ai/prilog-monitoring.git" },
+  "homepage": "https://github.com/Prilog-ai/prilog-monitoring#readme",
+  "bugs": { "url": "https://github.com/Prilog-ai/prilog-monitoring/issues" },
+  "license": "MIT",
+  "main": "index.cjs",
+  "exports": { ".": "./index.cjs" },
+  "files": ["index.cjs", "runtime.cjs", "LICENSE"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
+  "engines": { "node": ">=18" },
+  "scripts": { "test": "node --test test.cjs", "prepublishOnly": "npm test" },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/api-logs": "^0.200.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.60.0",
+    "@opentelemetry/exporter-logs-otlp-http": "^0.200.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.200.0",
+    "@opentelemetry/resources": "^2.0.0",
+    "@opentelemetry/sdk-logs": "^0.200.0",
+    "@opentelemetry/sdk-node": "^0.200.0",
+    "@opentelemetry/sdk-trace-base": "^2.0.0"
+  }
+}

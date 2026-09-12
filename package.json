@@ -1,0 +1,12 @@
+{
+  "name": "prilog-monitoring-build",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/obfuscate.cjs"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "5.7.0"
+  }
+}

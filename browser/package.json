@@ -1,0 +1,30 @@
+{
+  "name": "@prilog/monitoring-browser",
+  "version": "0.1.0",
+  "description": "OpenTelemetry browser monitoring for Prilog",
+  "repository": { "type": "git", "url": "git+https://github.com/Prilog-ai/prilog-monitoring.git" },
+  "homepage": "https://github.com/Prilog-ai/prilog-monitoring#readme",
+  "bugs": { "url": "https://github.com/Prilog-ai/prilog-monitoring/issues" },
+  "type": "module",
+  "main": "index.js",
+  "exports": { ".": "./index.js" },
+  "license": "MIT",
+  "files": ["index.js", "runtime.js", "LICENSE"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
+  "scripts": { "test": "node --test test.mjs", "prepublishOnly": "npm test" },
+  "devDependencies": { "playwright": "^1.58.2", "vite": "^8.0.10" },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/api-logs": "^0.200.0",
+    "@opentelemetry/sdk-trace-web": "^2.0.0",
+    "@opentelemetry/sdk-trace-base": "^2.0.0",
+    "@opentelemetry/sdk-logs": "^0.200.0",
+    "@opentelemetry/exporter-logs-otlp-http": "^0.200.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.200.0",
+    "@opentelemetry/resources": "^2.0.0",
+    "@opentelemetry/instrumentation": "^0.200.0",
+    "@opentelemetry/instrumentation-fetch": "^0.200.0",
+    "@opentelemetry/instrumentation-xml-http-request": "^0.200.0",
+    "@opentelemetry/instrumentation-document-load": "^0.48.0"
+  }
+}
