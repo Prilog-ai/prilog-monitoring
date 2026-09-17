@@ -1,15 +1,17 @@
 # Prilog Monitoring
 
-OpenTelemetry-based JavaScript SDKs for collecting logs, distributed traces, and exceptions in Prilog.
+OpenTelemetry-based SDKs for collecting logs, distributed traces, and exceptions in Prilog, with Node.js, browser, Python, and Go integrations.
 
 The runtime implementation in this repository is distributed as an obfuscated build. Public entry points expose the documented API. See [BUILDING.md](BUILDING.md) for reproducible generation from separately maintained readable sources.
 
 ## Packages
 
-| Runtime | npm package | Latest published version | Documentation |
+| Runtime | Package / module | Version | Documentation |
 | --- | --- | --- | --- |
 | Node.js | [@prilog/monitoring](https://www.npmjs.com/package/@prilog/monitoring) | 0.1.0 | [Node SDK](node/README.md) |
 | Browser / React | [@prilog/monitoring-browser](https://www.npmjs.com/package/@prilog/monitoring-browser) | 0.1.0 | [Browser SDK](browser/README.md) |
+| Python | `prilog-monitoring` | 0.1.0 (prepared for PyPI) | [Python SDK](python/README.md) |
+| Go | `github.com/Prilog-ai/prilog-monitoring/golang` | v0.1.0 | [Go SDK](golang/README.md) |
 
 ### Node.js
 
@@ -55,6 +57,24 @@ const monitoring = init({
 
 Replace `YOUR_PRILOG_DSN` with the service's publishable ingest DSN from Prilog. See the [browser SDK documentation](browser/README.md) for trace propagation, configuration, and error boundaries.
 
+### Python
+
+The obfuscated distribution is prepared; PyPI publication is pending publishing credentials. Once published, install it with:
+
+```bash
+python -m pip install prilog-monitoring
+```
+
+Initialize with your service DSN before starting the application framework. See the [Python SDK documentation](python/README.md) for logging, spans, exception capture, and shutdown.
+
+### Go
+
+```bash
+go get github.com/Prilog-ai/prilog-monitoring/golang@v0.1.0
+```
+
+Import the module as `prilog "github.com/Prilog-ai/prilog-monitoring/golang"`. See the [Go SDK documentation](golang/README.md) for initialization, `slog`, HTTP handlers, and error capture. Go 1.25 or later is required.
+
 ## Development
 
 The committed runtimes are ready to test. To regenerate them, follow [BUILDING.md](BUILDING.md).
@@ -74,11 +94,25 @@ npx playwright install chromium --only-shell
 npm test
 ```
 
+Run the Python SDK test from `python/` in a virtual environment:
+
+```bash
+python -m pip install .
+python -m unittest test_sdk.py -v
+```
+
+Run the Go SDK tests from `golang/`:
+
+```bash
+go test -race ./...
+go vet ./...
+```
+
 The tests export real OTLP telemetry to local mock collectors and verify startup signals, exceptions, and log/trace correlation. Browser tests run in Chromium.
 
 ## Releases
 
-See [PUBLISHING.md](PUBLISHING.md) for npm authentication, package inspection, publishing, and verification. Each package's `prepublishOnly` hook runs its tests before publication.
+See [PUBLISHING.md](PUBLISHING.md) for npm/PyPI publishing, Go module tags, and release verification. JavaScript packages run their tests through `prepublishOnly` before upload.
 
 The npm `0.1.0` releases predate the obfuscated distribution. Publishing these updated artifacts requires a new package version.
 
